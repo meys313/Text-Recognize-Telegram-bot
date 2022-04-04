@@ -5,7 +5,7 @@ from environs import Env
 BASE_DIR = Path(__file__).resolve().parent.parent # формирует конрневую директорию проекта
 
 
-# Теперь используем вместо библиотеки python-dotenv библиотеку environs
+
 env = Env()
 env.read_env()
 
