@@ -6,5 +6,6 @@ async def set_default_commands(dp):
         [
             types.BotCommand("text_recognize", "Текст с изображения"),
             types.BotCommand("help", "Вывести справку"),
+            types.BotCommand("lang", "Выбрать язык"),
         ]
     )

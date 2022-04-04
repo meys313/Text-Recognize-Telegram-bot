@@ -5,8 +5,7 @@ from aiogram.dispatcher import FSMContext
 from loader import dp
 
 from text_recognize.text_recognize import recognize
-
-
+from aiogram.dispatcher import FSMContext
 
 @dp.message_handler(commands="text_recognize")
 async def text_recognize(message: types.Message):
@@ -15,11 +14,14 @@ async def text_recognize(message: types.Message):
                          "Для лучшего качества результата рекомендуется заранее вырезать необходимую область с текстом.")
 
     @dp.message_handler(content_types=types.ContentTypes.PHOTO)
-    async def succes(message: types.Message):
+    async def succes(message: types.Message, state: FSMContext):
         await message.answer("Фото принято на обработку, ждите...")
         await message.photo[-1].download('image.jpg')
         try:
-            await message.answer(recognize().lower())
+            get_states = await state.get_data()
+            lang = get_states.get('lang', 'rus')
+            await message.answer(recognize(lang).lower())
+
         except Exception as ex:
             if ex.args[0] == 'Message must be non-empty':
                 await message.answer('Не удалось распознать текст.\n'
