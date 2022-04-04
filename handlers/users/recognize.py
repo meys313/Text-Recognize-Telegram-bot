@@ -11,6 +11,7 @@ from aiogram.dispatcher import FSMContext
 async def text_recognize(message: types.Message):
     await message.answer("отправьте изображение с имеющимся текстом.\n\n"
                          "Важно! Текст должен быть отчетливо виден, фон за текстом без явных, грубых помех. \n\n"
+                         "Заранее выберите соответствующий язык - /lang\n\n"
                          "Для лучшего качества результата рекомендуется заранее вырезать необходимую область с текстом.")
 
     @dp.message_handler(content_types=types.ContentTypes.PHOTO)
